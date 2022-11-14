@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: const Text(appTitle),
+          centerTitle: true,
         ),
         body: const PrimerFormulario(),
       ),
@@ -61,7 +62,7 @@ class _PrimerFormularioState extends State<PrimerFormulario> {
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             // agregar un margen
 
             children: [
@@ -81,6 +82,7 @@ class _PrimerFormularioState extends State<PrimerFormulario> {
               CheckboxListTile(
                   title: const Text('MotoCicleta'),
                   value: _motocicleta,
+                  selected: _bicicleta,
                   onChanged: (onChanged) {
                     setState(() {
                       _motocicleta = onChanged!;
@@ -88,10 +90,8 @@ class _PrimerFormularioState extends State<PrimerFormulario> {
                   }),
               CheckboxListTile(
                   title: const Text('Automovil'),
-                  value:
-
-                      /// A variable that is used to store the state of the checkbox.
-                      _automovil,
+                  value: _automovil,
+                  selected: _bicicleta,
                   onChanged: (onChanged) {
                     setState(() {
                       _automovil = onChanged!;
@@ -100,6 +100,7 @@ class _PrimerFormularioState extends State<PrimerFormulario> {
               CheckboxListTile(
                   title: const Text('Nada'),
                   value: _nada,
+                  selected: _bicicleta,
                   onChanged: (onChanged) {
                     setState(() {
                       _nada = onChanged!;
@@ -108,7 +109,7 @@ class _PrimerFormularioState extends State<PrimerFormulario> {
             ],
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 14),
+            padding: const EdgeInsets.symmetric(horizontal: 200, vertical: 50),
             child: ElevatedButton(
               onPressed: () {
                 // Respond to button press
