@@ -14,3 +14,9 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+<!-- agregar imagen de assets -->
+
+## Ejemplo de uso
+
+![mi presentacion](assets/presentacion_sesion7.jpg){:height="200px" width="100px"}
