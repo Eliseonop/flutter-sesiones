@@ -1,3 +1,5 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 
 class MyDrawer extends StatefulWidget {
@@ -8,6 +10,8 @@ class MyDrawer extends StatefulWidget {
 }
 
 class _MyDrawerState extends State<MyDrawer> {
+  var currentPage = DrawerSection.dashboard;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,7 +34,7 @@ class _MyDrawerState extends State<MyDrawer> {
               ),
             ),
           )),
-          Text(
+          const Text(
             'Pandas',
             style: TextStyle(fontSize: 20, color: Colors.white),
           ),
@@ -42,21 +46,77 @@ class _MyDrawerState extends State<MyDrawer> {
 
 Widget MyDrawerList() {
   return Container(
-    padding: EdgeInsets.only(top: 20.0),
-    child: Column(children: [
-      Dashboard(),
-      Divider(),
-      Events(),
-      Divider(),
-      Settings(),
-      Divider(),
-      Notes(),
-      Divider(),
-      Contacts(),
-      Divider(),
-      Notifications(),
-    ]),
+    padding: const EdgeInsets.only(top: 20.0),
+    child: Column(
+      children: [
+        menuItemsArgument(1, 'Dashboard', Icons.dashboard, true, context),
+        menuItemsArgument(2, 'Events', Icons.event, true, context),
+        menuItemsArgument(3, 'Settings', Icons.settings, true, context),
+        menuItemsArgument(4, 'Notes', Icons.note, true, context),
+        menuItemsArgument(5, 'Contacts', Icons.contacts, false, context),
+        menuItemsArgument(
+            6, 'Notifications', Icons.notifications, true, context),
+      ],
+    ),
   );
+}
+
+Widget menuItemsArgument(
+    int id, String title, IconData icon, bool selected, context) {
+  return Material(
+    color: Colors.transparent,
+    child: InkWell(
+      onTap: () {
+        Navigator.pop(context);
+        setState(() {
+          switch (currentPage) {
+            case DrawerSection.dashboard:
+              Navigator.pushNamed(context, '/dashboard');
+              break;
+            case DrawerSection.events:
+              Navigator.pushNamed(context, '/events');
+              break;
+            case DrawerSection.settings:
+              Navigator.pushNamed(context, '/settings');
+              break;
+            case DrawerSection.notes:
+              Navigator.pushNamed(context, '/notes');
+              break;
+            case DrawerSection.contacts:
+              Navigator.pushNamed(context, '/contacts');
+              break;
+            case DrawerSection.notifications:
+              Navigator.pushNamed(context, '/notifications');
+              break;
+          }
+        });
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+        child: Row(
+          children: [
+            Icon(icon),
+            const SizedBox(
+              width: 20.0,
+            ),
+            Text(
+              title,
+              style: const TextStyle(fontSize: 16.0),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+}
+
+enum DrawerSection {
+  dashboard,
+  events,
+  settings,
+  notes,
+  contacts,
+  notifications,
 }
 
 Widget Dashboard() {
